@@ -1,3 +1,7 @@
+## Installation
+
+Drag [module.rbxm](https://github.com/Reselim/rbx-engine.io/blob/master/module.rbxm) into studio.
+
 ## Example
 
 ```lua
