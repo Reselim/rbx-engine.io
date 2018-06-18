@@ -1,5 +1,5 @@
 {
-  "name": "socket.io-client",
+  "name": "engine.io-client",
   "servePort": 8000,
   "partitions": {
   	"engine": {
