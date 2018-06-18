@@ -1,0 +1,10 @@
+{
+  "name": "socket.io-client",
+  "servePort": 8000,
+  "partitions": {
+  	"engine": {
+  		"path": "src",
+  		"target": "ServerStorage.Engine"
+  	}
+  }
+}
