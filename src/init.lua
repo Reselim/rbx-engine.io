@@ -1,7 +1,7 @@
 local HttpService = game:GetService("HttpService")
 
 local Transport = require(script.Transport)
-local Emitter = require(script.Emitter)
+local Emitter = require(script.Parent.Emitter)
 local Timer = require(script.Timer)
 
 local Socket = setmetatable({}, Emitter)
@@ -11,7 +11,7 @@ function Socket.new(uri, path)
 	local self = setmetatable(Emitter.new(), Socket)
 
 	if uri then
-		local schema = uri:match("^(%s+)://")
+		local schema = uri:match("^(%w+)://")
 		local host = uri:gsub("^%w+://", ""):match("^([%w%.-]+:?%d*)")
 
 		self.Host = host
@@ -47,11 +47,13 @@ function Socket:Open()
 			self._pingTimer = Timer.new(function()
 				self:Ping()
 			end):Start(self._pingInterval)
-		elseif packet.Type == "error" then
-			self:Close(true)
 		end
 
-		self:Emit(packet.Type, packet.Data)
+		if packet.Type == "error" then
+			self:Close(true)
+		else
+			self:Emit(packet.Type, packet.Data)
+		end
 	end)
 
 	self._transport:On("error", function()
@@ -86,12 +88,12 @@ function Socket:Send(data)
 end
 
 function Socket:Close(error)
-	if not error then
+	if error then
+		self:Emit("close", true)
+	else
 		self._transport:Write({ Type = "close" })
 		self._transport:Flush(true)
 		self._transport:Close()
-	else
-		self:Emit("close")
 	end
 
 	if self._pingTimer then
