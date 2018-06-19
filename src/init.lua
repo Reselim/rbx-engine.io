@@ -1,7 +1,7 @@
 local HttpService = game:GetService("HttpService")
 
 local Transport = require(script.Transport)
-local Emitter = require(script.Parent.Emitter)
+local Emitter = require(script.Emitter)
 local Timer = require(script.Timer)
 
 local Socket = setmetatable({}, Emitter)
