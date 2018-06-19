@@ -12,7 +12,7 @@ function Socket.new(uri, path)
 
 	if uri then
 		local schema = uri:match("^(%s+)://")
-		local host = uri:match("^%s*:?/?/?([%w%.]:?%d*)")
+		local host = uri:gsub("^%w+://", ""):match("^([%w%.-]+:?%d*)")
 
 		self.Host = host
 		self.Secure = schema == "https" or schema == "wss"
