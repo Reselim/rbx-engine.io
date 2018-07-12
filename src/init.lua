@@ -93,8 +93,9 @@ function Socket:Close(error)
 	else
 		self._transport:Write({ Type = "close" })
 		self._transport:Flush(true)
-		self._transport:Close()
 	end
+
+	self._transport:Close()
 
 	if self._pingTimer then
 		self._pingTimer:Stop()
