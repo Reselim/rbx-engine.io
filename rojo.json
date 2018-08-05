@@ -1,10 +1,10 @@
 {
-  "name": "engine.io",
-  "servePort": 8000,
-  "partitions": {
-  	"engine": {
-  		"path": "src",
-  		"target": "ServerStorage.Engine"
-  	}
-  }
+	"name": "engine.io",
+	"servePort": 8000,
+	"partitions": {
+		"engine": {
+			"path": "src",
+			"target": "ServerStorage.Engine"
+		}
+	}
 }
